@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Category, Province, Canton, District, Legend, LegendDto } from "@/schemas/legends";
+import { Category, Province, Canton, District, Legend, type LegendDto } from "@/schemas/legends";
 
 export function useLegendsDemo() {
   const fetchLegends = async (): Promise<Legend[]> => {
@@ -21,9 +21,11 @@ export function useLegendsDemo() {
     });
   };
 
-  const createLegend = (id: string, legend: Omit<LegendDto, "id">, file?: File): Promise<Legend | null> => {};
-  const updateLegend = (id: string, legend: Partial<LegendDto>, file?: File): Promise<Legend | null> => {};
-  const deleteLegend = (id: string): Promise<boolean | null> => {};
+  const createLegend = async (id: string, legend: Omit<LegendDto, "id">, file?: File): Promise<Legend | null> =>
+    Promise.resolve(null);
+  const updateLegend = async (id: string, legend: Partial<LegendDto>, file?: File): Promise<Legend | null> =>
+    Promise.resolve(null);
+  const deleteLegend = async (id: string): Promise<boolean | null> => Promise.resolve(null);
 
   return { fetchLegends, createLegend, updateLegend, deleteLegend };
 }

@@ -11,5 +11,5 @@
       "path": "./tsconfig.vitest.json"
     }
   ],
-  "types": ["vue-sweetalert2"]
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts", "src/**/*-demo.ts"]
 }

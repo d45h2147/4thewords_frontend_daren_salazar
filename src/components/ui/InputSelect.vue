@@ -2,7 +2,7 @@
 import { computed, onMounted } from "vue";
 
 type OptionType<T = unknown> = T extends object ? T : Record<string, unknown>;
-const model = defineModel();
+const model = defineModel<OptionType>();
 
 const props = withDefaults(
   defineProps<{
