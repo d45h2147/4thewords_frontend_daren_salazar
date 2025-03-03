@@ -1,0 +1,12 @@
+[
+  { "id": 11, "name": "San José", "province_id": 1 },
+  { "id": 12, "name": "Desamparados", "province_id": 1 },
+  { "id": 21, "name": "Alajuela", "province_id": 2 },
+  { "id": 31, "name": "Paraíso", "province_id": 3 },
+  { "id": 32, "name": "Cartago", "province_id": 3 },
+  { "id": 33, "name": "Turrialba", "province_id": 3 },
+  { "id": 41, "name": "Heredia", "province_id": 4 },
+  { "id": 51, "name": "Puntarenas", "province_id": 5 },
+  { "id": 61, "name": "Liberia", "province_id": 6 },
+  { "id": 62, "name": "Nicoya", "province_id": 6 }
+]
