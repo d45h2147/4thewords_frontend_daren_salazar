@@ -128,6 +128,9 @@ pnpm install
 pnpm dev
 ```
 
+La aplicación se ejecutará en el puerto 3000 por defecto en tu entorno local.
+Puedes acceder a ella en [localhost:3000](http://localhost:3000).
+
 ### Comprobar Tipos, Compilar y Minificar para Producción
 
 ```sh
@@ -139,6 +142,10 @@ pnpm build
 ```sh
 pnpm test:unit
 ```
+
+### Resultado de los tests
+
+![Resultado de los tests](./public/demo/images/tests-result.jpg)
 
 ### Ejecutar Pruebas End-to-End con [Playwright](https://playwright.dev)
 
