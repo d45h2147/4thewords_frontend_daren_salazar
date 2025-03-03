@@ -2,9 +2,9 @@
 import { onMounted, ref } from "vue";
 import { type Canton, type Category, type District, type Province } from "@/schemas/legends";
 import { InputSelect, InputText } from "@/components/ui";
-import { useListForFilters } from "@/service";
+import { useLegendStore } from "@/stores";
 
-const { fetchListOfCategories, fetchListOfDistricts, fetchListOfCantons, fetchListOfProvinces } = useListForFilters();
+const store = useLegendStore();
 
 const modelName = defineModel<string>("name");
 const modelCategory = defineModel<Category>("category");
@@ -13,30 +13,25 @@ const modelProvince = defineModel<Province>("province");
 const modelCanton = defineModel<Canton>("canton");
 const modelDistrict = defineModel<District>("district");
 
-const categories = ref<Category[]>([]);
-const provinces = ref<Province[]>([]);
-const cantonsFetch = ref<Canton[]>([]);
-const districtsFetch = ref<District[]>([]);
-
 const cantons = ref<Canton[]>([]);
 const districts = ref<District[]>([]);
 
 const loadCantons = () => {
   modelCanton.value = undefined;
   modelDistrict.value = undefined;
-  cantons.value = cantonsFetch.value.filter((c) => c.province_id === modelProvince.value?.id);
+  cantons.value = store.cantons.filter((c) => c.province_id === modelProvince.value?.id);
 };
 
 const loadDistricts = () => {
   modelDistrict.value = undefined;
-  districts.value = districtsFetch.value.filter((d) => d.canton_id === modelCanton.value?.id);
+  districts.value = store.districts.filter((d) => d.canton_id === modelCanton.value?.id);
 };
 
 onMounted(async () => {
-  categories.value = await fetchListOfCategories();
-  provinces.value = await fetchListOfProvinces();
-  cantonsFetch.value = await fetchListOfCantons();
-  districtsFetch.value = await fetchListOfDistricts();
+  await store.fetchCategories();
+  await store.fetchProvinces();
+  await store.fetchCantons();
+  await store.fetchDistricts();
 });
 </script>
 
@@ -50,7 +45,7 @@ onMounted(async () => {
 
       <div>
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
-        <input-select v-model="modelCategory" :options="categories">
+        <input-select v-model="modelCategory" :options="store.categories">
           <template #manual-options>
             <option value="">Todas</option>
           </template>
@@ -70,7 +65,7 @@ onMounted(async () => {
 
       <div>
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Provincia</label>
-        <input-select v-model="modelProvince" :options="provinces" @change="loadCantons">
+        <input-select v-model="modelProvince" :options="store.provinces" @change="loadCantons">
           <template #manual-options>
             <option value="">Selecciona una provincia</option>
           </template>
