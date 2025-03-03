@@ -1,7 +1,7 @@
-import { Category, Province, Canton, District, Legend } from "@/schemas/legends";
 import { z } from "zod";
+import { Category, Province, Canton, District, Legend, LegendDto } from "@/schemas/legends";
 
-export function useLegends() {
+export function useLegendsDemo() {
   const fetchLegends = async (): Promise<Legend[]> => {
     const legendsData = await fetch("/demo/data/legends.json", {
       headers: { "Cache-Control": "no-cache" },
@@ -21,10 +21,14 @@ export function useLegends() {
     });
   };
 
-  return { fetchLegends };
+  const createLegend = (id: string, legend: Omit<LegendDto, "id">, file?: File): Promise<Legend | null> => {};
+  const updateLegend = (id: string, legend: Partial<LegendDto>, file?: File): Promise<Legend | null> => {};
+  const deleteLegend = (id: string): Promise<boolean | null> => {};
+
+  return { fetchLegends, createLegend, updateLegend, deleteLegend };
 }
 
-export function useListForFilters() {
+export function useListForFiltersDemo() {
   const fetchListOfCategories = async (): Promise<Category[]> => {
     const legendsData = await fetch("/demo/data/list-of-categories.json", {
       headers: { "Cache-Control": "no-cache" },

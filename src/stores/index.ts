@@ -7,10 +7,16 @@ import {
   type Legend,
   type LegendDto,
 } from "@/schemas/legends";
-import { useLegends, useListForFilters } from "@/service";
 
+import { useLegends, useListForFilters } from "@/service";
 const { fetchLegends, createLegend, updateLegend, deleteLegend } = useLegends();
 const { fetchListOfCategories, fetchListOfProvinces, fetchListOfCantons, fetchListOfDistricts } = useListForFilters();
+
+// Descomentar para cargar los datos de demo
+// import { useLegendsDemo, useListForFiltersDemo } from "@/service/legends-service-demo";
+// const { fetchLegends, createLegend, updateLegend, deleteLegend } = useLegendsDemo();
+// const { fetchListOfCategories, fetchListOfProvinces, fetchListOfCantons, fetchListOfDistricts } =
+//   useListForFiltersDemo();
 
 export const useLegendStore = defineStore("legendStore", {
   state: () => ({
